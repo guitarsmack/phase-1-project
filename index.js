@@ -1,0 +1,1 @@
+const jsonFile = fetch("https://www.dnd5eapi.co/swagger/openapi.json")
