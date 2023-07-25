@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded",doAll)
 
 const url = "https://www.dnd5eapi.co/api/classes"
-let selectedClassName = ""
+let showsClass = false
 
 function doAll(){  //initializes once the DOM is loaded
     getClasses()
@@ -29,29 +29,34 @@ function makeButtons(classes){
 }
 
 
-//gets all levels for specified class and divides them into each level.
 function fillClassPage(elem){
-    fetch(`https://www.dnd5eapi.co/api/classes/${elem}/levels`)
+    if (showsClass === true){
+        document.querySelectorAll("h3").forEach(elem => elem.remove())
+    }
+    fetch(`https://www.dnd5eapi.co/api/classes/${elem}/levels`) //gets the full class levels
     .then(resp => resp.json())
-    .then(data => data.forEach(function (currentLevel){
+    .then(data => data.forEach(function (currentLevel){ //iterates through each level
         h3 = document.createElement("h3")
         h3.innerText = `Level: ${currentLevel.level}`
         h3.id = currentLevel.level
-        currentLevel.features.forEach(function (feature){
-            fetch(`https://www.dnd5eapi.co${feature.url}`)
+        h3.className = "class-details"
+        currentLevel.features.forEach(function (feature){ //iterates through each of the class features
+            fetch(`https://www.dnd5eapi.co${feature.url}`)//each with their own api addresses
             .then(resp => resp.json())
-            .then(function(data){
+            .then(function(data){ //creates each ability title
             p1 = document.createElement("p")
             p1.innerText = data.name
-            p2 = document.createElement("p")
+            p1.className = "ability-name"
+            p2 = document.createElement("p") //creates each ability description
             p2.innerText = data.desc
-            p1.className = data.level
+            p1.className = "ability-details"
             p1.appendChild(p2)
             document.getElementById(`${data.level}`).appendChild(p1)
             })
         })
         document.getElementById("level-list").appendChild(h3)
     }))
+    showsClass = true
 }
 
 function getClassAbility(feature){
