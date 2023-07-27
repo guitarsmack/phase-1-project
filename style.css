@@ -1,9 +1,19 @@
+ h1 {
+    text-align: center;
+    border: thick ridge black;
+    border-width: .4em;
+ }
+ 
  img#class-image {
     display: block;
     margin-left: auto;
     margin-right: auto;
     width: 500px;
     height: auto;
+    border: ridge tan;
+    border-width: 10px;
+    background-image: url(p1_project_photos/backgroundimage.png);
+    /* background-color: rgb(0, 0, 0); */
 }
 
 .character-button {
@@ -17,8 +27,10 @@
 }
 
 button {
-    border: medium ridge red;
-    border-radius: 5px;
+    border-radius: 10px;
+    text-transform: capitalize;
+    background-color: rgb(194, 175, 135);
+    margin: 2px;
 }
 
 #buttons {
@@ -27,17 +39,23 @@ button {
     text-align: center;
     border: medium ridge red;
     border-radius: 10px;
+    border-width: .2em;
+    background-color: black;
 }
 
 body {
     padding: 25px;
-    background-image: url("p1_project_photos/backgroundimage.png");
+    background-image: url("p1_project_photos/ice2_background_base.png");
     background-color: rgb(240, 235, 214);
-    color: black;
     font-size: 25px;
 }
 
 .dark-mode {
     background-image: url("p1_project_photos/ice2_background_base.png");
     color: white;
+}
+
+.ability-details {
+    font-weight: normal;
+    font-size: 20px;
 }

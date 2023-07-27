@@ -1,7 +1,5 @@
 document.addEventListener("DOMContentLoaded",doAll)
 
-let showsClass = false
-
 function doAll(){  //initializes once the DOM is loaded
     getClasses()
 }
@@ -22,15 +20,18 @@ function makeButtons(classes){
         const button = document.createElement("button")
         button.innerText = data.index
         button.className = "character-button"
-        button.addEventListener("click", (e) => fillClassPage(e.target.innerText))
+        button.addEventListener("mouseover", (e) => e.target.style.backgroundColor = "gold")
+        button.addEventListener("mouseout", (e) => e.target.style.backgroundColor = "rgb(194, 175, 135)")
+        button.addEventListener("click", (e) => fillClassPage(e.target.innerText.toLowerCase()))
         document.getElementById("buttons").appendChild(button)
     })})
 }
 
 
 function fillClassPage(elem){ //elem is the innertext of the button that is clicked which is the class
-    if (showsClass === true){ //had to make a variable that equals false by default so that when this tries to remove something it doesn't error
-        document.querySelectorAll("h3").forEach(elem => elem.remove())
+    let parent = document.getElementById("level-list")
+    while (parent.firstChild) {
+        parent.removeChild(parent.firstChild);
     }
     fetch(`https://www.dnd5eapi.co/api/classes/${elem}/levels`) //gets the full class levels
     .then(resp => resp.json())
@@ -43,22 +44,19 @@ function fillClassPage(elem){ //elem is the innertext of the button that is clic
             fetch(`https://www.dnd5eapi.co${feature.url}`)//each feature has their own api addresses
             .then(resp => resp.json())
             .then(function(data){ //creates each ability name and information
-            p1 = document.createElement("p")
+            p1 = document.createElement("h5")
             p1.innerText = data.name
             p1.className = "ability-name"
             p2 = document.createElement("p") 
             p2.innerText = data.desc
             p2.className = "ability-details"
             p1.appendChild(p2)
+            console.log(p1.innerText)
             document.getElementById(`${data.level}`).after(p1)
             })
         })
         document.getElementById("level-list").appendChild(h3)
     }))
-    setTimeout(()=>{
-        document.querySelectorAll("h3").forEach(level => {if(level.children.length === 0){level.remove()}})//removes levels that are not used due to not having any children
-    },1000)
-    showsClass = true //changes the variable so that the function will now remove the class iinformation that's already there
     document.getElementById("class-image").src = `p1_project_photos/${elem}image.png`//simply changes the main image to the class specific image
 }
 
