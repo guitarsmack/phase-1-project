@@ -1,8 +1,6 @@
-document.addEventListener("DOMContentLoaded",doAll)
+document.addEventListener("DOMContentLoaded",getClasses)
 
-function doAll(){  //initializes once the DOM is loaded
-    getClasses()
-}
+
 
 
 function getClasses(){ //fetches data to put through to make buttons 
@@ -62,7 +60,3 @@ function fillClassPage(elem){ //elem is the innertext of the button that is clic
 
 
 
-
-function myFunction() {
-    document.body.classList.toggle("dark-mode");
-}
