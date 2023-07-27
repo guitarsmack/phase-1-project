@@ -54,7 +54,7 @@ function fillClassPage(elem){ //elem is the innertext of the button that is clic
             })
         })
         document.getElementById("level-list").appendChild(h3)
-    }))
+    })).catch(response => console.error(response))
     document.getElementById("class-image").src = `p1_project_photos/${elem}image.png`//simply changes the main image to the class specific image
 }
 
