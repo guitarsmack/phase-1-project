@@ -2,7 +2,10 @@
     text-align: center;
     border: thick ridge black;
     border-width: .4em;
- }
+    margin-left: 30%;
+    margin-right: 30%;
+}
+
  
  img#class-image {
     display: block;
@@ -13,11 +16,15 @@
     border: ridge tan;
     border-width: 10px;
     background-image: url(p1_project_photos/backgroundimage.png);
-    /* background-color: rgb(0, 0, 0); */
 }
 
 .character-button {
     float: center;
+}
+
+#class-title {
+    text-align: center;
+    text-transform: capitalize;
 }
 
 #class {
@@ -41,7 +48,7 @@ button {
     width: 10%;
     text-align: center;
     border: medium ridge red;
-    border-radius: 10px;
+    border-radius: 20px;
     border-width: .2em;
     background-color: black;
 }

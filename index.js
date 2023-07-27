@@ -31,6 +31,7 @@ function fillClassPage(elem){ //elem is the innertext of the button that is clic
     while (parent.firstChild) {
         parent.removeChild(parent.firstChild);
     }
+    document.getElementById("class-title").innerText = elem
     fetch(`https://www.dnd5eapi.co/api/classes/${elem}/levels`) //gets the full class levels
     .then(resp => resp.json())
     .then(data => data.forEach(function (currentLevel){ //iterates through each level initially makes just the level header
@@ -49,7 +50,6 @@ function fillClassPage(elem){ //elem is the innertext of the button that is clic
             p2.innerText = data.desc
             p2.className = "ability-details"
             p1.appendChild(p2)
-            console.log(p1.innerText)
             document.getElementById(`${data.level}`).after(p1)
             })
         })
