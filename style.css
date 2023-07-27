@@ -6,7 +6,38 @@
     height: auto;
 }
 
+.character-button {
+    float: center;
+}
 
-h1 {
-    background-color: aquamarine;
+#class {
+    margin: auto;
+    width: 50%;
+    float: center;
+}
+
+button {
+    border: medium ridge red;
+    border-radius: 5px;
+}
+
+#buttons {
+    float: left;
+    width: 3.5em;
+    text-align: center;
+    border: medium ridge red;
+    border-radius: 10px;
+}
+
+body {
+    padding: 25px;
+    background-image: url("p1_project_photos/backgroundimage.png");
+    background-color: rgb(240, 235, 214);
+    color: black;
+    font-size: 25px;
+}
+
+.dark-mode {
+    background-image: url("p1_project_photos/ice2_background_base.png");
+    color: white;
 }

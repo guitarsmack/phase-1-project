@@ -38,7 +38,7 @@ function fillClassPage(elem){ //elem is the innertext of the button that is clic
         h3 = document.createElement("h3")
         h3.innerText = `Level: ${currentLevel.level}`
         h3.id = currentLevel.level
-        h3.className = "class-details"
+        h3.className = "level"
         currentLevel.features.forEach(function (feature){ //iterates through each of the class features in a single level
             fetch(`https://www.dnd5eapi.co${feature.url}`)//each feature has their own api addresses
             .then(resp => resp.json())
@@ -48,15 +48,23 @@ function fillClassPage(elem){ //elem is the innertext of the button that is clic
             p1.className = "ability-name"
             p2 = document.createElement("p") 
             p2.innerText = data.desc
-            p1.className = "ability-details"
+            p2.className = "ability-details"
             p1.appendChild(p2)
-            document.getElementById(`${data.level}`).appendChild(p1)
-            
+            document.getElementById(`${data.level}`).after(p1)
             })
         })
         document.getElementById("level-list").appendChild(h3)
     }))
+    setTimeout(()=>{
+        document.querySelectorAll("h3").forEach(level => {if(level.children.length === 0){level.remove()}})//removes levels that are not used due to not having any children
+    },1000)
     showsClass = true //changes the variable so that the function will now remove the class iinformation that's already there
     document.getElementById("class-image").src = `p1_project_photos/${elem}image.png`//simply changes the main image to the class specific image
 }
 
+
+
+
+function myFunction() {
+    document.body.classList.toggle("dark-mode");
+}
