@@ -25,7 +25,7 @@ This is somewhat of a passion project that I would like to expand on more at som
 
 My blog post is not necessarily relevant to my project but as it is about fetch() the topic is relevant to the site. This is the link to it. I found diving into this topic generall helpful in completing this project. https://myschool.hashnode.dev/most-challenging-concept-of-flatiron-school-phase-1.
 
-A link to my video walkthrough of my application is https://youtu.be/eXF7HjTr4XA
+A link to my video walkthrough of my application is https://youtu.be/_lRTMR8KTKs
 
 ## Media
 
