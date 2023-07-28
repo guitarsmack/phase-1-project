@@ -6,6 +6,9 @@
     margin-right: 30%;
 }
 
+#image-container {
+    width: 500px;
+}
  
  img#class-image {
     display: block;

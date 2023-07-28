@@ -1,18 +1,30 @@
-document.addEventListener("DOMContentLoaded",getClasses)
+document.addEventListener("DOMContentLoaded",performOpening)
 
 
+function performOpening(){
+    getClasses()
+    addPageClear()
+}
 
+function addPageClear(){
+    document.querySelector("img").addEventListener("dblclick",(e) => {
+        removeChildren()
+        e.target.src = "p1_project_photos/DnD-Emblem.png"
+        document.getElementById("class-title").innerText = "Choose Your Path"
+        console.log(e.target)
+        
+    })
+}
 
-function getClasses(){ //fetches data to put through to make buttons 
-    fetch("https://www.dnd5eapi.co/api/classes")         //to select the class information to reveal
+function getClasses(){
+    fetch("https://www.dnd5eapi.co/api/classes")//gets an array of all the clases
     .then(resp => resp.json())
     .then(data => makeButtons(data.results))
 }
 
 function makeButtons(classes){
-    console.log(classes)
     classes.map(element => {
-    fetch(`https://www.dnd5eapi.co/api/classes/${element.index}`)
+    fetch(`https://www.dnd5eapi.co/api/classes/${element.index}`)//for each class it is getting its name to make the button
     .then(resp => resp.json())
     .then(data => {
         const button = document.createElement("button")
@@ -27,10 +39,7 @@ function makeButtons(classes){
 
 
 function fillClassPage(elem){ //elem is the innertext of the button that is clicked which is the class
-    let parent = document.getElementById("level-list")
-    while (parent.firstChild) {
-        parent.removeChild(parent.firstChild);
-    }
+    removeChildren()//removes any previously listed class abilities
     document.getElementById("class-title").innerText = elem
     fetch(`https://www.dnd5eapi.co/api/classes/${elem}/levels`) //gets the full class levels
     .then(resp => resp.json())
@@ -50,13 +59,28 @@ function fillClassPage(elem){ //elem is the innertext of the button that is clic
             p2.innerText = data.desc
             p2.className = "ability-details"
             p1.appendChild(p2)
-            document.getElementById(`${data.level}`).after(p1)
+            document.getElementById(`${data.level}`).appendChild(p1)//list of features are created
             })
         })
-        document.getElementById("level-list").appendChild(h3)
+        document.getElementById("level-list").appendChild(h3)//adds each level to the DOM
     })).catch(response => console.error(response))
+    setTimeout(removeParents,1000)//gets rid of empty levels
     document.getElementById("class-image").src = `p1_project_photos/${elem}image.png`//simply changes the main image to the class specific image
 }
 
+function removeParents(){
+    let h3s = document.querySelectorAll("h3")
+    h3s.forEach(level => {
+        if(level.children.length === 0){
+            level.remove()
+        }
+    })
+}
 
+function removeChildren(){
+    let parent = document.getElementById("level-list")
+    while (parent.firstChild) {
+        parent.removeChild(parent.firstChild);
+    }
+}
 
